@@ -5,79 +5,106 @@ using ZXing;
 using ZXing.QrCode;
 using UnityEngine.UI;
 
-
-
 public class QRScaner : MonoBehaviour
 {
-    private bool cameraInitialized;
+    public WebCamTexture camera;
+    public GameObject plane;
+    public Text resultDecode;
+    public InputField UserText;
+    public GameObject panelGenerate;
 
-    private WebCamTexture camTexture;
-    private Rect screenRect;
-
-    private BarcodeReader barCodeReader;
-
-    void Start()
+    public void GenerateOrScaner(bool scaner)
     {
-        barCodeReader = new BarcodeReader();
-
-        screenRect = new Rect(0, 0, Screen.width, Screen.height);
-        camTexture = new WebCamTexture();
-        camTexture.requestedHeight = Screen.height;
-        camTexture.requestedWidth = Screen.width;
-        if (camTexture != null)
+        if (scaner)
         {
-            camTexture.Play();
+            StartCoroutine(Scaner());
         }
 
-        StartCoroutine(InitializeCamera());
+        else
+        {
+            panelGenerate.SetActive(true);
+        }
     }
 
-    private IEnumerator InitializeCamera()
+    IEnumerator Scaner()
     {
-        WebCamDevice CameraDevice = new WebCamDevice();
+        resultDecode.text = string.Empty;
+        resultDecode.gameObject.SetActive(false);
+        yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+        plane.gameObject.SetActive(true);
+        camera = new WebCamTexture();
+        plane.GetComponent<Renderer>().material.mainTexture = camera;
+        camera.Play();
 
-        // Waiting a little seem to avoid the Vuforia crashes.
-        yield return new WaitForSeconds(1.25f);
-
-        var isFrameFormatSet = CameraDevice. stance.SetFrameFormat(Image.PIXEL_FORMAT.RGB888, true);
-        Debug.Log(string.Format("FormatSet : {0}", isFrameFormatSet));
-
-        // Force autofocus.
-        var isAutoFocus = CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_CONTINUOUSAUTO);
-        if (!isAutoFocus)
+        while ((resultDecode.text = QrReader()) == null)
         {
-            CameraDevice.Instance.SetFocusMode(CameraDevice.FocusMode.FOCUS_MODE_NORMAL);
+            yield return new WaitForSeconds(1f);
         }
-        Debug.Log(string.Format("AutoFocus : {0}", isAutoFocus));
-        cameraInitialized = true;
+
+        plane.gameObject.SetActive(false);
+        resultDecode.gameObject.SetActive(true);
+        camera.Stop();
     }
 
-    private void Update()
+    string QrReader()
     {
-        if (cameraInitialized)
+        IBarcodeReader barcodeReader = new BarcodeReader();
+        // decode the current frame
+        var result = barcodeReader.Decode(camera.GetPixels32(),
+          camera.width, camera.height);
+
+        if (result != null)
         {
-            try
+            return result.Text;
+        }
+        else
+            return null;
+    }
+
+
+    public void Generate()
+    {
+        if (UserText.text != null)
+        {
+            plane.GetComponent<Renderer>().material.mainTexture = GenerateBarcode(UserText.text, BarcodeFormat.QR_CODE, 400, 400);
+            panelGenerate.SetActive(false);
+            plane.SetActive(true);
+        }
+    }
+
+
+    private Texture2D GenerateBarcode(string data, BarcodeFormat format, int width, int height)
+    {
+        ZXing.QrCode.QrCodeEncodingOptions opt = new ZXing.QrCode.QrCodeEncodingOptions
+        {
+            CharacterSet = "utf-8",
+            Height = height,
+            Width = width
+        };
+
+        IBarcodeWriter writer = new BarcodeWriter
+        {
+            Format = BarcodeFormat.QR_CODE,
+            Options = opt
+        };
+
+        // Generate the BitMatrix
+        ZXing.Common.BitMatrix bitMatrix = writer.Encode(data);
+        //new MultiFormatWriter().encode(data, format, width, height);
+        // Generate the pixel array
+        Color[] pixels = new Color[bitMatrix.Width * bitMatrix.Height];
+        int pos = 0;
+        for (int y = 0; y < bitMatrix.Height; y++)
+        {
+            for (int x = 0; x < bitMatrix.Width; x++)
             {
-                var cameraFeed = CameraDevice.Instance.GetCameraImage(Image.PIXEL_FORMAT.RGB888);
-                if (cameraFeed == null)
-                {
-                    return;
-                }
-                var data = barCodeReader.Decode(cameraFeed.Pixels, cameraFeed.BufferWidth, cameraFeed.BufferHeight, RGBLuminanceSource.BitmapFormat.RGB24);
-                if (data != null)
-                {
-                    // QRCode detected.
-                    Debug.Log(data.Text);
-                }
-                else
-                {
-                    Debug.Log("No QR code detected !");
-                }
-            }
-            catch 
-            {
-                Debug.LogError(e.Message);
+                pixels[pos++] = bitMatrix[x, y] ? Color.black : Color.white;
             }
         }
+        // Setup the texture
+        Texture2D tex = new Texture2D(bitMatrix.Width, bitMatrix.Height);
+        tex.SetPixels(pixels);
+        tex.Apply();
+        return tex;
     }
 }
