@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: de897b69fb559c9458b2a26005d1e25f
+timeCreated: 1513703467
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Camera01
+    100002: Camera01.Target
+    100004: Camera02
+    100006: Camera02.Target
+    100008: drool1_01
+    100010: drool1_02
+    100012: drool2_01
+    100014: drool2_02
+    100016: IK Chain01
+    100018: JAW
+    100020: JawBASE
+    100022: Jawtip
+    100024: LHorn1
+    100026: Lhorn2
+    100028: Mesh
+    100030: //RootNode
+    100032: Omni01
+    100034: Omni02
+    100036: Omni03
+    100038: Rhorn1
+    100040: Rhorn2
+    100042: SLUG
+    100044: SLUG Footsteps
+    100046: SLUG Head
+    100048: SLUG HeadNub
+    100050: SLUG L Calf
+    100052: SLUG L Clavicle
+    100054: SLUG L Finger0
+    100056: SLUG L Finger0Nub
+    100058: SLUG L Finger1
+    100060: SLUG L Finger1Nub
+    100062: SLUG L Finger2
+    100064: SLUG L Finger2Nub
+    100066: SLUG L Foot
+    100068: SLUG L Forearm
+    100070: SLUG L Hand
+    100072: SLUG L Thigh
+    100074: SLUG L Toe0
+    100076: SLUG L Toe0Nub
+    100078: SLUG L UpperArm
+    100080: SLUG Neck
+    100082: SLUG Pelvis
+    100084: SLUG R Calf
+    100086: SLUG R Clavicle
+    100088: SLUG R Finger0
+    100090: SLUG R Finger0Nub
+    100092: SLUG R Finger1
+    100094: SLUG R Finger1Nub
+    100096: SLUG R Finger2
+    100098: SLUG R Finger2Nub
+    100100: SLUG R Foot
+    100102: SLUG R Forearm
+    100104: SLUG R Hand
+    100106: SLUG R Thigh
+    100108: SLUG R Toe0
+    100110: SLUG R Toe0Nub
+    100112: SLUG R UpperArm
+    100114: SLUG Spine
+    100116: SLUG Spine1
+    100118: SLUG Spine2
+    100120: SLUG Spine3
+    100122: SLUG Tail
+    100124: SLUG Tail1
+    100126: SLUG Tail2
+    100128: SLUG Tail3
+    100130: SLUG Tail4
+    100132: SLUG Tail5
+    100134: SLUG TailNub
+    100136: ZZCRAPbone
+    100138: ZZCRAPbone2
+    100140: ZZCRAPbone3
+    100142: ZZCRAPbone4
+    400000: Camera01
+    400002: Camera01.Target
+    400004: Camera02
+    400006: Camera02.Target
+    400008: drool1_01
+    400010: drool1_02
+    400012: drool2_01
+    400014: drool2_02
+    400016: IK Chain01
+    400018: JAW
+    400020: JawBASE
+    400022: Jawtip
+    400024: LHorn1
+    400026: Lhorn2
+    400028: Mesh
+    400030: //RootNode
+    400032: Omni01
+    400034: Omni02
+    400036: Omni03
+    400038: Rhorn1
+    400040: Rhorn2
+    400042: SLUG
+    400044: SLUG Footsteps
+    400046: SLUG Head
+    400048: SLUG HeadNub
+    400050: SLUG L Calf
+    400052: SLUG L Clavicle
+    400054: SLUG L Finger0
+    400056: SLUG L Finger0Nub
+    400058: SLUG L Finger1
+    400060: SLUG L Finger1Nub
+    400062: SLUG L Finger2
+    400064: SLUG L Finger2Nub
+    400066: SLUG L Foot
+    400068: SLUG L Forearm
+    400070: SLUG L Hand
+    400072: SLUG L Thigh
+    400074: SLUG L Toe0
+    400076: SLUG L Toe0Nub
+    400078: SLUG L UpperArm
+    400080: SLUG Neck
+    400082: SLUG Pelvis
+    400084: SLUG R Calf
+    400086: SLUG R Clavicle
+    400088: SLUG R Finger0
+    400090: SLUG R Finger0Nub
+    400092: SLUG R Finger1
+    400094: SLUG R Finger1Nub
+    400096: SLUG R Finger2
+    400098: SLUG R Finger2Nub
+    400100: SLUG R Foot
+    400102: SLUG R Forearm
+    400104: SLUG R Hand
+    400106: SLUG R Thigh
+    400108: SLUG R Toe0
+    400110: SLUG R Toe0Nub
+    400112: SLUG R UpperArm
+    400114: SLUG Spine
+    400116: SLUG Spine1
+    400118: SLUG Spine2
+    400120: SLUG Spine3
+    400122: SLUG Tail
+    400124: SLUG Tail1
+    400126: SLUG Tail2
+    400128: SLUG Tail3
+    400130: SLUG Tail4
+    400132: SLUG Tail5
+    400134: SLUG TailNub
+    400136: ZZCRAPbone
+    400138: ZZCRAPbone2
+    400140: ZZCRAPbone3
+    400142: ZZCRAPbone4
+    4300000: Mesh
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -493,10 +493,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  plane: {fileID: 1006151543}
+  scannerbutton: {fileID: 1995436838}
   resultDecode: {fileID: 543999277}
   UserText: {fileID: 904532295}
   panelGenerate: {fileID: 251681700}
+  plane: {fileID: 1006151543}
 --- !u!1 &543999275
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,12 +618,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 516023119}
-        m_MethodName: 
+      - m_Target: {fileID: 516023123}
+        m_MethodName: CopyText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -942,8 +943,8 @@ GameObject:
   - component: {fileID: 1006151545}
   - component: {fileID: 1006151544}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: PlaneScane
+  m_TagString: generateQR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,13 +1015,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006151543}
-  m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: -0.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 516023122}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -270, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: -90}
 --- !u!1 &1107421317
 GameObject:
   m_ObjectHideFlags: 0

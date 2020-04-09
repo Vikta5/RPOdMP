@@ -4,14 +4,18 @@ using UnityEngine;
 using ZXing;
 using ZXing.QrCode;
 using UnityEngine.UI;
+using NatShareU;
+using System.IO;
 
 public class QRScaner : MonoBehaviour
 {
     public WebCamTexture camera;
-    public GameObject plane;
+    public Button scannerbutton;
     public Text resultDecode;
     public InputField UserText;
-    public GameObject panelGenerate;
+    public GameObject panelGenerate, plane;
+    bool isGenerated = false;
+    Texture2D generatedQR;
 
     public void GenerateOrScaner(bool scaner)
     {
@@ -22,12 +26,23 @@ public class QRScaner : MonoBehaviour
 
         else
         {
+            StopAllCoroutines();
+            StopCoroutine(Scaner());
+            UserText.text = null;
             panelGenerate.SetActive(true);
+            scannerbutton.interactable = true;
+            isGenerated = false;
+            camera = new WebCamTexture();
+            resultDecode.text = null;
+            resultDecode.gameObject.SetActive(false);
+            //camera.Stop();
         }
     }
 
     IEnumerator Scaner()
     {
+        isGenerated = false;
+        scannerbutton.interactable = false;
         resultDecode.text = string.Empty;
         resultDecode.gameObject.SetActive(false);
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
@@ -44,6 +59,8 @@ public class QRScaner : MonoBehaviour
         plane.gameObject.SetActive(false);
         resultDecode.gameObject.SetActive(true);
         camera.Stop();
+        scannerbutton.interactable = true;
+
     }
 
     string QrReader()
@@ -69,6 +86,7 @@ public class QRScaner : MonoBehaviour
             plane.GetComponent<Renderer>().material.mainTexture = GenerateBarcode(UserText.text, BarcodeFormat.QR_CODE, 400, 400);
             panelGenerate.SetActive(false);
             plane.SetActive(true);
+            isGenerated = true;
         }
     }
 
@@ -105,6 +123,47 @@ public class QRScaner : MonoBehaviour
         Texture2D tex = new Texture2D(bitMatrix.Width, bitMatrix.Height);
         tex.SetPixels(pixels);
         tex.Apply();
+        generatedQR = tex;
         return tex;
+    }
+
+    private void Update()
+    {
+
+        if (Input.GetMouseButton(0))
+        {
+            if (isGenerated)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.tag == "generateQR")
+                {
+               
+                    byte[] bytes = generatedQR.EncodeToPNG();
+                    string filename = "QR" + PlayerPrefs.GetInt("counterQR") + ".png";
+                    PlayerPrefs.SetInt("counterQR", PlayerPrefs.GetInt("counterQR") + 1);
+                    string fileLocation = Path.Combine(Application.persistentDataPath, filename);
+                    File.WriteAllBytes(fileLocation, bytes);
+                    isGenerated = false;
+                    //NatShare.SaveToCameraRoll(generatedQR);
+                    // NatShare.Share(generatedQR);
+                    Debug.Log("тык");
+                }
+            }
+
+        }
+    }
+          
+
+    public void CopyText()
+    {
+        TextEditor editor = new TextEditor
+        {
+            text = resultDecode.text
+        };
+
+        editor.SelectAll();
+        editor.Copy();
     }
 }
